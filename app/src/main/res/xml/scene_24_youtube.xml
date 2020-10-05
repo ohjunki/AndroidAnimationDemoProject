@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <Transition
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/end"
+        app:motionInterpolator="linear">
+
+        <OnSwipe
+            app:touchAnchorId="@+id/top_image_container"
+            app:touchAnchorSide="bottom"
+            app:dragDirection="dragDown"/>
+
+        <KeyFrameSet>
+            <KeyPosition
+                app:motionTarget="@+id/top_image_container"
+                app:framePosition="90"
+                app:percentWidth="0"
+                app:percentX="0"/>
+            <KeyPosition
+                app:motionTarget="@+id/recyclerview_container"
+                app:framePosition="90"
+                app:percentWidth="0"
+                app:percentX="0"/>
+            <KeyPosition
+                app:motionTarget="@+id/top_image"
+                app:framePosition="90"
+                app:percentWidth="0"
+                app:percentX="0"/>
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start"/>
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@+id/top_image_container">
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerview_container" />
+        </Constraint>
+        <Constraint android:id="@+id/top_image">
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintTop_toTopOf="@id/top_image_container"
+                app:layout_constraintBottom_toBottomOf="@id/top_image_container"
+                app:layout_constraintStart_toStartOf="@id/top_image_container" />
+        </Constraint>
+
+        <Constraint android:id="@+id/image_play">
+            <PropertySet android:alpha="1"/>
+        </Constraint>
+        <Constraint android:id="@+id/image_clear">
+            <PropertySet android:alpha="1"/>
+        </Constraint>
+
+        <Constraint android:id="@+id/recyclerview_container">
+            <PropertySet android:alpha="0"/>
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </Constraint>
+        <Constraint android:id="@+id/recyclerview_front">
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/recyclerview_container"
+                app:layout_constraintTop_toTopOf="@+id/recyclerview_container"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerview_container"
+                app:layout_constraintStart_toStartOf="@+id/recyclerview_container"/>
+        </Constraint>
+        <Constraint android:id="@+id/bottom_nav">
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>
