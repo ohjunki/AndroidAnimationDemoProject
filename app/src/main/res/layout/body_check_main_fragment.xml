@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="ojk.animation.portfolio.R"/>
+        <variable
+            name="vm"
+            type="ojk.animation.portfolio.bodycheck.BodyCheckMainFragment.BodyCheckMainViewModel" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".bodycheck.BodyCheckDemoActivity"
+            app:layoutDescription="@xml/activity_enter_exit_demo_scene">
+
+            <View
+                android:id="@+id/top_bg"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:background="@color/bodyCheckPrimaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hi, Shakibul"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="24dp"
+                style="@style/BodyCheckMainTitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Requirement"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/guide_requirement"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="8dp"
+                style="@style/BodyCheckSubTitle"/>
+
+            <LinearLayout
+                android:id="@+id/guide_requirement"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_margin="24dp"
+                tools:background=""
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/top_bg">
+                <include
+                    app:title="@{`Mask`}"
+                    app:imgSrc="@{R.drawable.ic_mask}"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:onTap="@{ () -> vm.onRequirementClick(0) }"
+                    layout="@layout/widget_bodycheck_requirement_view"/>
+                <include
+                    app:title="@{`Gloves`}"
+                    app:imgSrc="@{R.drawable.ic_gloves}"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:onTap="@{ () -> vm.onRequirementClick(1) }"
+                    layout="@layout/widget_bodycheck_requirement_view"/>
+                <include
+                    app:title="@{`Alcohol`}"
+                    app:imgSrc="@{R.drawable.ic_alcohol}"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:onTap="@{ () -> vm.onRequirementClick(2) }"
+                    layout="@layout/widget_bodycheck_requirement_view"/>
+                <include
+                    app:title="@{`Soap`}"
+                    app:imgSrc="@{R.drawable.ic_hand_soap}"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:onTap="@{ () -> vm.onRequirementClick(3) }"
+                    layout="@layout/widget_bodycheck_requirement_view"/>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/title_symp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Symptopmps"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guide_requirement"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="48dp"
+                style="@style/BodyCheckSubTitle"/>
+
+
+            <View
+                android:id="@+id/guide1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_symp"/>
+
+            <include
+                android:id="@+id/s1"
+                app:title="@{`Fever`}"
+                app:imgSrc="@{R.drawable.img_face_fever}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/guide1"
+                app:layout_constraintStart_toStartOf="@+id/guide1"
+                app:layout_constraintEnd_toStartOf="@id/s2"
+                app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_fever) }"
+                layout="@layout/widget_bodycheck_symptomps"/>
+            <include
+                android:id="@+id/s2"
+                app:title="@{`Cough`}"
+                app:imgSrc="@{R.drawable.img_face_cough}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/guide1"
+                app:layout_constraintStart_toEndOf="@+id/s1"
+                app:layout_constraintEnd_toEndOf="@+id/guide1"
+                app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_cough) }"
+                layout="@layout/widget_bodycheck_symptomps"/>
+
+            <View
+                android:id="@+id/guide2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/s2"/>
+            <include
+                android:id="@+id/s3"
+                app:title="@{`Sore troath`}"
+                app:imgSrc="@{R.drawable.img_face_sore_troath}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/guide2"
+                app:layout_constraintStart_toStartOf="@+id/guide2"
+                app:layout_constraintEnd_toStartOf="@id/s4"
+                app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_sore_troath) }"
+                layout="@layout/widget_bodycheck_symptomps"/>
+            <include
+                android:id="@+id/s4"
+                app:title="@{`Tiredness`}"
+                app:imgSrc="@{R.drawable.img_face_headache}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/guide2"
+                app:layout_constraintStart_toEndOf="@+id/s3"
+                app:layout_constraintEnd_toEndOf="@+id/guide2"
+                app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_headache) }"
+                layout="@layout/widget_bodycheck_symptomps"/>
+
+            <View
+                android:id="@+id/guide3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/s4"/>
+            <include
+                android:id="@+id/s5"
+                app:title="@{`Aches`}"
+                app:imgSrc="@{R.drawable.img_face_sore_troath_middle}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/guide3"
+                app:layout_constraintStart_toStartOf="@+id/guide3"
+                app:layout_constraintEnd_toStartOf="@id/s6"
+                app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_sore_troath_middle) }"
+                layout="@layout/widget_bodycheck_symptomps"/>
+            <include
+                android:id="@+id/s6"
+                app:title="@{`Shortness breath`}"
+                app:imgSrc="@{R.drawable.img_face_comportable}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/guide3"
+                app:layout_constraintStart_toEndOf="@+id/s5"
+                app:layout_constraintEnd_toEndOf="@+id/guide3"
+                app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_comportable) }"
+                layout="@layout/widget_bodycheck_symptomps"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

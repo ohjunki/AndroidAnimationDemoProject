@@ -6,6 +6,7 @@ import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ojk.animation.portfolio.bodycheck.BodyCheckDemoActivity
 import ojk.animation.portfolio.youtubedemo.YouTubeDemoActivity
 
 /**
@@ -28,7 +29,8 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
             "Example showing a transition like YouTube",
             YouTubeDemoActivity::class.java
         ),
-        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout", R.layout.motion_13_drawerlayout)
+        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout", R.layout.motion_13_drawerlayout),
+        DemosAdapter.Demo("Enter Animation", "BodyCheck Animation", BodyCheckDemoActivity::class.java )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

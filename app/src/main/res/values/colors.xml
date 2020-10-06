@@ -9,4 +9,10 @@
     <color name="azure">#49A9DF</color>
     <color name="cerulean_blue">#137AE2</color>
     <color name="brown">#643A07</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="bodyCheckPrimaryColor">#DDF2FF</color>
+    <color name="bodyCheckTextPrimaryDartColor">#425060</color>
+    <color name="bodyCheckTextPrimaryColor">#6F7894</color>
 </resources>
