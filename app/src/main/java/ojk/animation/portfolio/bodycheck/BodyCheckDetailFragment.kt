@@ -1,16 +1,15 @@
 package ojk.animation.portfolio.bodycheck
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.transition.AutoTransition
-import android.transition.ChangeBounds
-import android.transition.ChangeImageTransform
-import android.transition.TransitionSet
-import androidx.fragment.app.Fragment
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import androidx.constraintlayout.motion.widget.TransitionBuilder
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import ojk.animation.portfolio.R
@@ -27,9 +26,9 @@ class BodyCheckDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        postponeEnterTransition()
         sharedElementEnterTransition = AutoTransition()
-        sharedElementReturnTransition = AutoTransition()
+        sharedElementReturnTransition = AutoTransition() //TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +37,13 @@ class BodyCheckDetailFragment : Fragment() {
         binding = DataBindingUtil.inflate<BodyCheckDetailFragmentBinding>(inflater, R.layout.body_check_detail_fragment, container, false)
         binding.vm = viewModel
         binding.srcImg = getShareMap()!!["resourceId"] as Int
+        binding.faceImage.viewTreeObserver.addOnPreDrawListener(object:ViewTreeObserver.OnPreDrawListener{
+            override fun onPreDraw(): Boolean {
+                startPostponedEnterTransition()
+                binding.faceImage.viewTreeObserver.removeOnPreDrawListener(this)
+                return true;
+            }
+        })
         return binding.root
     }
 

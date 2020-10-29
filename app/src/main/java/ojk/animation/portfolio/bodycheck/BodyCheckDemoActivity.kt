@@ -27,8 +27,8 @@ class BodyCheckDemoActivity : AppCompatActivity() , SimpleNavigate{
         )
 
         val beginTransaction = supportFragmentManager.beginTransaction()
-        beginTransaction.replace(R.id.fragment_container, fragment )
         beginTransaction.addToBackStack(null);
+        beginTransaction.replace(R.id.fragment_container, fragment )
         shareElement?.forEach{ v-> beginTransaction.addSharedElement(v, v.transitionName)}
         beginTransaction.commit()
     }

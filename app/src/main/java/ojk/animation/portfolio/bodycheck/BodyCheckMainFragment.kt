@@ -2,17 +2,17 @@ package ojk.animation.portfolio.bodycheck
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.google.android.material.snackbar.Snackbar
+import androidx.recyclerview.widget.GridLayoutManager
 import ojk.android.utils.DLog
 import ojk.animation.portfolio.R
 import ojk.animation.portfolio.databinding.BodyCheckMainFragmentBinding
@@ -35,7 +35,13 @@ class BodyCheckMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.e( "MotionLayout", "onCreateView")
         binding = DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
+        with(binding.recyclerview){
+            adapter = MyAdapter(viewModel);
+            layoutManager = GridLayoutManager(context, 2);
+            setHasFixedSize(true)
+        }
         return binding.root
     }
 
@@ -55,7 +61,6 @@ class BodyCheckMainFragment : Fragment() {
             navigate( BodyCheckDetailFragment::class.java , list )
         })
     }
-
 
     class BodyCheckMainViewModel : ViewModel() {
         private val _toast = MutableLiveData<String>();
