@@ -40,7 +40,6 @@ class BodyCheckMainFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null;
         Log.e( "MotionLayout", "onDestroyView called" )
     }
 
@@ -48,13 +47,11 @@ class BodyCheckMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        postponeEnterTransition()
         Log.e( "MotionLayout", "onCreateView called" )
         binding = binding ?: DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
         binding!!.motionLayout.viewTreeObserver.addOnPreDrawListener(object:ViewTreeObserver.OnPreDrawListener{
             override fun onPreDraw(): Boolean {
                 binding!!.motionLayout.viewTreeObserver.removeOnPreDrawListener(this);
-                startPostponedEnterTransition()
                 return true;
             }
         })
