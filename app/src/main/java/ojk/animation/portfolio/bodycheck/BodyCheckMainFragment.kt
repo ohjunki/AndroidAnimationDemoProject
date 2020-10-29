@@ -24,13 +24,12 @@ import ojk.android.utils.DLog
 import ojk.animation.portfolio.R
 import ojk.animation.portfolio.databinding.BodyCheckMainFragmentBinding
 
-class BodyCheckMainFragment : Fragment() , ViewTreeObserver.OnGlobalLayoutListener{
+class BodyCheckMainFragment : Fragment() {
 
     companion object {
         fun newInstance() = BodyCheckMainFragment()
     }
 
-    private var isGlobalLoaded : Boolean = false;
     private var binding: BodyCheckMainFragmentBinding? = null
     val viewModel: BodyCheckMainViewModel by viewModels<BodyCheckMainViewModel>()
 
@@ -49,19 +48,17 @@ class BodyCheckMainFragment : Fragment() , ViewTreeObserver.OnGlobalLayoutListen
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        postponeEnterTransition()
         Log.e( "MotionLayout", "onCreateView called" )
         binding = binding ?: DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
-        if( !isGlobalLoaded ){
-            binding!!.root.viewTreeObserver.addOnGlobalLayoutListener(this)
-//            binding.motionLayout.progress = 1.0F
-        }
+        binding!!.motionLayout.viewTreeObserver.addOnPreDrawListener(object:ViewTreeObserver.OnPreDrawListener{
+            override fun onPreDraw(): Boolean {
+                binding!!.motionLayout.viewTreeObserver.removeOnPreDrawListener(this);
+                startPostponedEnterTransition()
+                return true;
+            }
+        })
         return binding!!.root
-    }
-
-    override fun onGlobalLayout() {
-        binding!!.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
-//        binding.motionLayout.transitionToStart()
-        isGlobalLoaded = true;
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

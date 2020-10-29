@@ -75,13 +75,11 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.2.5'
 
     // Java language implementation
-    implementation "androidx.navigation:navigation-fragment:2.3.0"
-    implementation "androidx.navigation:navigation-ui:2.3.0"
+    implementation "androidx.navigation:navigation-fragment:2.0.0"
+    implementation "androidx.navigation:navigation-ui:2.0.0"
 
     // Kotlin
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
-    // Feature module Support
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.0.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.0.0"
 
 }

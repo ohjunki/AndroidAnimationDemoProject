@@ -33,7 +33,6 @@ class BodyCheckDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        postponeEnterTransition()
 //        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
 //        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         sharedElementEnterTransition = AutoTransition()
@@ -46,6 +45,7 @@ class BodyCheckDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        postponeEnterTransition()
         binding = DataBindingUtil.inflate<BodyCheckDetailFragmentBinding>(inflater, R.layout.body_check_detail_fragment, container, false)
         binding.vm = viewModel
         binding.srcImg = getShareMap()!!["resourceId"] as Int
