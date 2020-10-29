@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import ojk.animation.portfolio.R
@@ -27,6 +28,10 @@ class BodyCheckDemoActivity : AppCompatActivity() , SimpleNavigate{
         val extras = FragmentNavigator.Extras.Builder()
         shareElement?.forEach{ v-> extras.addSharedElement(v, v.transitionName)}
         binding.root.findNavController().navigate(
+//            R.id.bodyCheckDetailFragment,
+//            null,
+//            NavOptions.Builder()
+//                .build(),
             directinos,
             extras.build())
     }
