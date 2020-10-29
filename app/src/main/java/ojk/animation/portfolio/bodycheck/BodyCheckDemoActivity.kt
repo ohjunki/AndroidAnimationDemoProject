@@ -1,13 +1,16 @@
 package ojk.animation.portfolio.bodycheck
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
 import ojk.animation.portfolio.R
 import ojk.animation.portfolio.databinding.ActivityBodyCheckDemoBinding
 
@@ -20,29 +23,31 @@ class BodyCheckDemoActivity : AppCompatActivity() , SimpleNavigate{
         binding = DataBindingUtil.setContentView<ActivityBodyCheckDemoBinding>(this, R.layout.activity_body_check_demo);
     }
 
-    override fun navigate( fragment : Class<*>, shareElement : List<View>?) {
-        val fragment : Fragment = supportFragmentManager.fragmentFactory.instantiate(
-            fragment.classLoader!!,
-            fragment.name
-        )
-
-        val beginTransaction = supportFragmentManager.beginTransaction()
-        beginTransaction.replace(R.id.fragment_container, fragment )
-        beginTransaction.addToBackStack(null);
-        shareElement?.forEach{ v-> beginTransaction.addSharedElement(v, v.transitionName)}
-        beginTransaction.commit()
+    override fun navigate(directinos : NavDirections, shareElement : List<View>?) {
+        val extras = FragmentNavigator.Extras.Builder()
+        shareElement?.forEach{ v-> extras.addSharedElement(v, v.transitionName)}
+        binding.root.findNavController().navigate(
+            directinos,
+            extras.build())
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
+//        if( supportFragmentManager.backStackEntryCount == 0 )
+//        else supportFragmentManager.popBackStack()
     }
 
     private val map = HashMap<String,Any>();
     override fun getBundle(): MutableMap<String, Any> = map
+
+    override fun finish() {
+        super.finish()
+        ActivityNavigator.applyPopAnimationsToPendingTransition(this)
+    }
 }
 
 fun Fragment.onBackPressed() = (activity as? SimpleNavigate)?.onBackPressed()
-fun Fragment.navigate( fragment : Class<*> , shareElement : List<View>? = null ) = (activity as? SimpleNavigate)?.navigate(fragment,shareElement)
+fun Fragment.navigate( directinos : NavDirections , shareElement : List<View>? = null ) = (activity as? SimpleNavigate)?.navigate(directinos,shareElement)
 fun Fragment.getShareMap() = (activity as? SimpleNavigate)?.getBundle()
 fun Fragment.getTransitionView( transitionName : String , root : View? = this.view ) : View? {
     return root?.let {
@@ -55,5 +60,5 @@ fun Fragment.getTransitionView( transitionName : String , root : View? = this.vi
 interface SimpleNavigate{
     fun onBackPressed()
     fun getBundle() : MutableMap<String,Any>
-    fun navigate( fragment : Class<*>, shareElement : List<View>?)
+    fun navigate( directinos : NavDirections, shareElement : List<View>?)
 }

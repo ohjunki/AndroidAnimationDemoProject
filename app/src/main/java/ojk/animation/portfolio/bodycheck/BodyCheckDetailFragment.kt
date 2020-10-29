@@ -2,6 +2,7 @@ package ojk.animation.portfolio.bodycheck
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import android.transition.AutoTransition
 import android.transition.ChangeBounds
 import android.transition.ChangeImageTransform
@@ -12,7 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 import ojk.animation.portfolio.R
 import ojk.animation.portfolio.databinding.BodyCheckDetailFragmentBinding
 
@@ -30,6 +34,9 @@ class BodyCheckDetailFragment : Fragment() {
 
         sharedElementEnterTransition = AutoTransition()
         sharedElementReturnTransition = AutoTransition()
+        viewModel.goBack.observe(this, Observer {
+            findNavController().navigateUp()
+        })
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,5 +49,9 @@ class BodyCheckDetailFragment : Fragment() {
     }
 
     class BodyCheckDetailViewModel : ViewModel() {
+        val goBack = MutableLiveData<Boolean>()
+        fun onBack(){
+            goBack.value = true
+        }
     }
 }

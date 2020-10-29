@@ -6,6 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragment_container"
-        android:name="ojk.animation.portfolio.bodycheck.BodyCheckMainFragment"
-        tools:layout="@layout/body_check_main_fragment"/>
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        tools:layout="@layout/body_check_main_fragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/body_check_demo_nav_graph"/>
 </layout>

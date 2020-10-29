@@ -15,8 +15,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".bodycheck.BodyCheckDemoActivity"
-            app:layoutDescription="@xml/activity_enter_exit_demo_scene">
+            android:id="@+id/motion_layout"
+            tools:context=".bodycheck.BodyCheckDemoActivity">
 
             <View
                 android:id="@+id/top_bg"
@@ -29,6 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/mainTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hi, Shakibul"
@@ -38,6 +39,7 @@
                 style="@style/BodyCheckMainTitle"/>
 
             <TextView
+                android:id="@+id/title_requirement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Requirement"
@@ -120,6 +122,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_symp"/>
 
+            <View
+                android:id="@+id/guide2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/s2"/>
+
+            <View
+                android:id="@+id/guide3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/s4"/>
+
             <include
                 android:id="@+id/s1"
                 app:title="@{`Fever`}"
@@ -146,16 +170,6 @@
                 app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_cough) }"
                 layout="@layout/widget_bodycheck_symptomps"/>
 
-            <View
-                android:id="@+id/guide2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/s2"/>
             <include
                 android:id="@+id/s3"
                 app:title="@{`Sore troath`}"
@@ -182,16 +196,6 @@
                 app:onTap="@{ () -> vm.onSymptopmpsClick(R.drawable.img_face_headache) }"
                 layout="@layout/widget_bodycheck_symptomps"/>
 
-            <View
-                android:id="@+id/guide3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/s4"/>
             <include
                 android:id="@+id/s5"
                 app:title="@{`Aches`}"

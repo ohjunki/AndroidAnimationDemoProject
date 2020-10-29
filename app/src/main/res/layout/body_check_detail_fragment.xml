@@ -23,6 +23,7 @@
             android:layout_height="40dp"
             android:layout_margin="18dp"
             android:src="@drawable/ic_menu_back"
+            android:onClick="@{()->vm.onBack()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
