@@ -22,6 +22,8 @@ class BodyStateHolder(
         this.item = item
         view.imgSrc = item.resourceId
         view.title = item.title
+        view.bg.transitionName = "bg${item.resourceId}"
+        view.image.transitionName = "${item.resourceId}"
         view.root.setOnClickListener { itemClick(item) }
     }
 }
