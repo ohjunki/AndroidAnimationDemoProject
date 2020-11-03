@@ -6,6 +6,7 @@ import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ojk.animation.portfolio.viewoverlay.FoldAnimationActivity
 import ojk.animation.portfolio.youtubedemo.YouTubeDemoActivity
 
 /**
@@ -27,6 +28,11 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
             "YouTube like motion Example",
             "Example showing a transition like YouTube",
             YouTubeDemoActivity::class.java
+        ),
+        DemosAdapter.Demo(
+            "Folding Animation",
+            " with ViewOverlay API",
+            FoldAnimationActivity::class.java
         ),
         DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout", R.layout.motion_13_drawerlayout)
     )
