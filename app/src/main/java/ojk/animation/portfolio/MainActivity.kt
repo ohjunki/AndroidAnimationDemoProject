@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ojk.animation.portfolio.viewoverlay.FoldAnimationActivity
+import ojk.animation.portfolio.bodycheck.BodyCheckDemoActivity
 import ojk.animation.portfolio.youtubedemo.YouTubeDemoActivity
 
 /**
@@ -34,7 +35,8 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
             " with ViewOverlay API",
             FoldAnimationActivity::class.java
         ),
-        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout", R.layout.motion_13_drawerlayout)
+        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout", R.layout.motion_13_drawerlayout),
+        DemosAdapter.Demo("Enter Animation", "BodyCheck Animation", BodyCheckDemoActivity::class.java )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

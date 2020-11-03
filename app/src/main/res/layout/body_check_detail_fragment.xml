@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="srcImg"
+            type="int" />
+        <variable
+            name="vm"
+            type="ojk.animation.portfolio.bodycheck.BodyCheckDetailFragment.BodyCheckDetailViewModel" />
+    </data>
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bodyCheckPrimaryColor"
+        app:layoutDescription="@xml/body_check_detail_fragment_scene">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="15dp"
+            android:layout_height="40dp"
+            android:layout_margin="18dp"
+            android:src="@drawable/ic_menu_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/ic_voice"
+            android:layout_width="15dp"
+            android:layout_height="40dp"
+            android:layout_margin="18dp"
+            android:src="@drawable/ic_menu_voice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/face_image"
+            android:layout_width="260dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:transitionName="@{`bg`+srcImg}">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:src="@drawable/img_face_fever"
+                android:srcGlide="@{srcImg}"
+                android:transitionName="@{srcImg+``}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="03:20"
+            android:layout_margin="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/face_image"
+            style="@style/BodyCheckMainTitle"/>
+
+        <LinearLayout
+            android:id="@+id/controller"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_btn_prior"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_btn_next"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_btn_pause"/>
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="96dp"
+            app:layout_constraintStart_toStartOf="@+id/btmContents"
+            app:layout_constraintEnd_toEndOf="@+id/btmContents"
+            app:layout_constraintBottom_toTopOf="@+id/btmContents"
+            app:layout_constraintTop_toTopOf="@+id/btmContents"/>
+
+        <LinearLayout
+            android:id="@+id/btmContents"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:translationZ="1dp"
+            android:elevation="1dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/controller">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fever Treatment"
+                style="@style/BodyCheckMainTitle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3.00 min"
+                style="@style/BodyCheckSmallLightTitle"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/body_check_detail_contents"
+                style="@style/BodyCheckSmallRegularTitle"/>
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_done"
+            android:layout_margin="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/bodyCheckPrimaryColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                style="@style/BodyCheckMainTitle"/>
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>
