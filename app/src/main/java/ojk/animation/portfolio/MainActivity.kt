@@ -6,6 +6,8 @@ import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ojk.android.utils.AndroidUtilLibrary
+import ojk.android.utils.DLog
 import ojk.animation.portfolio.viewoverlay.FoldAnimationActivity
 import ojk.animation.portfolio.bodycheck.BodyCheckDemoActivity
 import ojk.animation.portfolio.youtubedemo.YouTubeDemoActivity
