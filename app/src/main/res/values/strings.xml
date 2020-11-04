@@ -4,4 +4,8 @@
     <string name="cat">Cat</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="body_check_detail_contents">Easy Pose (Sukhasana): Come into a seated position with hips on the floor. Criss-Cross the legs at the shins. Place the hands on the knees in Gyan Mudra. Lengthen the body from the crown of the head to the pelvis. Draw the shoulders back and lift the chest.</string>
+    <string name="title_activity_bottom_nav">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dash</string>
+    <string name="title_notifications">Notification</string>
 </resources>

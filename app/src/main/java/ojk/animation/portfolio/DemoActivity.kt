@@ -31,10 +31,6 @@ class DemoActivity : AppCompatActivity(), SimpleNavigate {
         beginTransaction.commit()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
     private val map = HashMap<String,Any>();
     override fun getBundle(): MutableMap<String, Any> = map
 }
