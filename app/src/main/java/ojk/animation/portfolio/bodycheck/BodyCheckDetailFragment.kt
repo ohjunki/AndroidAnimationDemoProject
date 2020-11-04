@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import ojk.animation.portfolio.R
 import ojk.animation.portfolio.databinding.BodyCheckDetailFragmentBinding
+import ojk.animation.portfolio.navigationhelper.getShareMap
 
 class BodyCheckDetailFragment : Fragment() {
 
