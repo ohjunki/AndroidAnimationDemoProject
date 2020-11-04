@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ojk.animation.portfolio.R
+import ojk.animation.portfolio.bodycheck.BodyCheckMainFragment
 import ojk.animation.portfolio.fragmentmanaging.ui.dashboard.DashboardFragment
 import ojk.animation.portfolio.fragmentmanaging.ui.home.HomeFragment
 import ojk.animation.portfolio.fragmentmanaging.ui.notifications.NotificationsFragment
@@ -15,7 +16,7 @@ class BottomNavActivity : AppCompatActivity() {
     val list = arrayListOf(
         StackableFragment(HomeFragment::class.java),
         StackableFragment(DashboardFragment::class.java),
-        StackableFragment(NotificationsFragment::class.java)
+        StackableFragment(BodyCheckMainFragment::class.java)
     )
 
     lateinit var navView: BottomNavigationView
