@@ -2,6 +2,7 @@ package ojk.animation.portfolio.fragmentmanaging.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,6 +19,8 @@ class BottomNavActivity : AppCompatActivity() {
         StackableFragment(DashboardFragment::class.java),
         StackableFragment(BodyCheckMainFragment::class.java)
     )
+
+    val listAdded = arrayListOf( false, false , false );
 
     lateinit var navView: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +42,13 @@ class BottomNavActivity : AppCompatActivity() {
     }
 
     private fun selectTab( index : Int ){
-        curTabIndex = index
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_root, list[index])
-            .commit()
+        supportFragmentManager.beginTransaction().apply {
+            if( listAdded[curTabIndex] ) detach(list[curTabIndex])
+            if( listAdded[index] ) attach(list[index]) else add(R.id.fragment_container_root, list[index])
+            listAdded[index] = true
+            curTabIndex = index
+            commit()
+        }
     }
 
     override fun onBackPressed() {
@@ -53,3 +59,5 @@ class BottomNavActivity : AppCompatActivity() {
         }
     }
 }
+
+fun Fragment.generateTag() = javaClass.name
