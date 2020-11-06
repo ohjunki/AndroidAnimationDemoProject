@@ -6,6 +6,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragment_container"
-        android:name="ojk.animation.portfolio.bodycheck.BodyCheckMainFragment"
         tools:layout="@layout/body_check_main_fragment"/>
 </layout>

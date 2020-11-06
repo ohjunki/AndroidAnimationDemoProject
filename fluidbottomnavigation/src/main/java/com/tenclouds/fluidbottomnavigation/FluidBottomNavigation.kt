@@ -23,6 +23,7 @@ import com.tenclouds.fluidbottomnavigation.listener.OnTabSelectedListener
 import kotlinx.android.synthetic.main.item.view.*
 import kotlin.math.abs
 
+
 class FluidBottomNavigation : FrameLayout {
 
     constructor(context: Context) : super(context) {
@@ -54,7 +55,7 @@ class FluidBottomNavigation : FrameLayout {
     var iconSelectedColor: Int = ContextCompat.getColor(context, R.color.iconColor)
     var textColor: Int = ContextCompat.getColor(context, R.color.iconSelectedColor)
     var textFont: Typeface = ResourcesCompat.getFont(context, R.font.rubik_regular)
-            ?: Typeface.DEFAULT
+        ?: Typeface.DEFAULT
 
     val selectedTabItem: FluidBottomNavigationItem? get() = items[selectedTabPosition]
 
@@ -78,18 +79,17 @@ class FluidBottomNavigation : FrameLayout {
         getAttributesOrDefaultValues(attrs)
         clipToPadding = false
         layoutParams =
-                ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        bottomBarHeight)
+            ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                bottomBarHeight)
     }
 
     fun selectTab(position: Int) {
         if (position == selectedTabPosition) return
 
         if (views.size > 0) {
-            FluidUtils.animateSelectItemView(views[selectedTabPosition], true) //.animateDeselectItemView()
-            FluidUtils.animateSelectItemView(views[position], false)
-//            views[position].animateSelectItemView()
+            views[selectedTabPosition].animateDeselectItemView()
+            views[position].animateSelectItemView()
         }
 
         this.selectedTabPosition = position
@@ -118,8 +118,8 @@ class FluidBottomNavigation : FrameLayout {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    calculateHeight(bottomBarHeight)
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                calculateHeight(bottomBarHeight)
             ).let {
                 addView(backgroundView, it)
             }
@@ -128,22 +128,22 @@ class FluidBottomNavigation : FrameLayout {
         post { requestLayout() }
 
         LinearLayout(context)
-                .apply {
-                    orientation = LinearLayout.HORIZONTAL
-                    gravity = Gravity.CENTER
+            .apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER
+            }
+            .let { linearLayoutContainer ->
+                val layoutParams =
+                    LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        bottomBarHeight,
+                        Gravity.BOTTOM)
+                addView(linearLayoutContainer, layoutParams)
+                post {
+                    bottomBarWidth = width
+                    drawItemsViews(linearLayoutContainer)
                 }
-                .let { linearLayoutContainer ->
-                    val layoutParams =
-                            LayoutParams(
-                                    ViewGroup.LayoutParams.MATCH_PARENT,
-                                    bottomBarHeight,
-                                    Gravity.BOTTOM)
-                    addView(linearLayoutContainer, layoutParams)
-                    post {
-                        bottomBarWidth = width
-                        drawItemsViews(linearLayoutContainer)
-                    }
-                }
+            }
     }
 
     private fun drawItemsViews(linearLayout: LinearLayout) {
@@ -158,16 +158,15 @@ class FluidBottomNavigation : FrameLayout {
 
         for (itemPosition in items.indices) {
             inflater
-                    .inflate(R.layout.item, this, false)
-                    .let {
-                        views.add(it)
-                        it.tag = "$itemPosition"
-                        linearLayout
-                                .addView(it,
-                                        LayoutParams(
-                                                itemViewWidth,
-                                                itemViewHeight.toInt()))
-                    }
+                .inflate(R.layout.item, this, false)
+                .let {
+                    views.add(it)
+                    linearLayout
+                        .addView(it,
+                            LayoutParams(
+                                itemViewWidth,
+                                itemViewHeight.toInt()))
+                }
             drawItemView(itemPosition)
         }
     }
@@ -196,8 +195,8 @@ class FluidBottomNavigation : FrameLayout {
                 setTextColor(this@FluidBottomNavigation.textColor)
                 text = item.title
                 setTextSize(
-                        TypedValue.COMPLEX_UNIT_PX,
-                        resources.getDimension(R.dimen.fluidBottomNavigationTextSize))
+                    TypedValue.COMPLEX_UNIT_PX,
+                    resources.getDimension(R.dimen.fluidBottomNavigationTextSize))
             }
             with(circle) {
                 setTintColor(accentColor)
@@ -221,33 +220,33 @@ class FluidBottomNavigation : FrameLayout {
     private fun getAttributesOrDefaultValues(attrs: AttributeSet?) {
         if (attrs != null) {
             with(context
-                    .obtainStyledAttributes(
-                            attrs,
-                            R.styleable.FluidBottomNavigation,
-                            0, 0)) {
+                .obtainStyledAttributes(
+                    attrs,
+                    R.styleable.FluidBottomNavigation,
+                    0, 0)) {
                 selectedTabPosition = getInt(
-                        R.styleable.FluidBottomNavigation_defaultTabPosition,
-                        DEFAULT_SELECTED_TAB_POSITION)
+                    R.styleable.FluidBottomNavigation_defaultTabPosition,
+                    DEFAULT_SELECTED_TAB_POSITION)
                 accentColor = getColor(
-                        R.styleable.FluidBottomNavigation_accentColor,
-                        ContextCompat.getColor(context, R.color.accentColor))
+                    R.styleable.FluidBottomNavigation_accentColor,
+                    ContextCompat.getColor(context, R.color.accentColor))
                 backColor = getColor(
-                        R.styleable.FluidBottomNavigation_backColor,
-                        ContextCompat.getColor(context, R.color.backColor))
+                    R.styleable.FluidBottomNavigation_backColor,
+                    ContextCompat.getColor(context, R.color.backColor))
                 iconColor = getColor(
-                        R.styleable.FluidBottomNavigation_iconColor,
-                        ContextCompat.getColor(context, R.color.iconColor))
+                    R.styleable.FluidBottomNavigation_iconColor,
+                    ContextCompat.getColor(context, R.color.iconColor))
                 textColor = getColor(
-                        R.styleable.FluidBottomNavigation_textColor,
-                        ContextCompat.getColor(context, R.color.iconSelectedColor))
+                    R.styleable.FluidBottomNavigation_textColor,
+                    ContextCompat.getColor(context, R.color.iconSelectedColor))
                 iconSelectedColor = getColor(
-                        R.styleable.FluidBottomNavigation_iconSelectedColor,
-                        ContextCompat.getColor(context, R.color.iconSelectedColor))
+                    R.styleable.FluidBottomNavigation_iconSelectedColor,
+                    ContextCompat.getColor(context, R.color.iconSelectedColor))
                 textFont = ResourcesCompat.getFont(
-                        context,
-                        getResourceId(
-                                R.styleable.FluidBottomNavigation_textFont,
-                                R.font.rubik_regular)) ?: Typeface.DEFAULT
+                    context,
+                    getResourceId(
+                        R.styleable.FluidBottomNavigation_textFont,
+                        R.font.rubik_regular)) ?: Typeface.DEFAULT
                 recycle()
             }
         }
@@ -256,21 +255,22 @@ class FluidBottomNavigation : FrameLayout {
     fun getSelectedTabPosition() = this.selectedTabPosition
 
     override fun onSaveInstanceState() =
-            Bundle()
-                    .apply {
-                        putInt(EXTRA_SELECTED_TAB_POSITION, selectedTabPosition)
-                        putParcelable(EXTRA_SELECTED_SUPER_STATE, super.onSaveInstanceState())
-                    }
+        Bundle()
+            .apply {
+                putInt(EXTRA_SELECTED_TAB_POSITION, selectedTabPosition)
+                putParcelable(EXTRA_SELECTED_SUPER_STATE, super.onSaveInstanceState())
+            }
 
     override fun onRestoreInstanceState(state: Parcelable?) =
-            if (state is Bundle?) {
-                selectedTabPosition = state
-                        ?.getInt(EXTRA_SELECTED_TAB_POSITION) ?: DEFAULT_SELECTED_TAB_POSITION
-                state?.getParcelable(EXTRA_SELECTED_SUPER_STATE)
-            } else {
-                state
+        if (state is Bundle?) {
+            selectedTabPosition = state
+                ?.getInt(EXTRA_SELECTED_TAB_POSITION) ?: DEFAULT_SELECTED_TAB_POSITION
+            state?.getParcelable(EXTRA_SELECTED_SUPER_STATE)
+        } else {
+            state
+        }
+            .let {
+                super.onRestoreInstanceState(it)
             }
-                    .let {
-                        super.onRestoreInstanceState(it)
-                    }
 }
+

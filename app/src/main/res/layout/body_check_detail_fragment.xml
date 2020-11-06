@@ -4,9 +4,6 @@
         <variable
             name="srcImg"
             type="int" />
-        <variable
-            name="vm"
-            type="ojk.animation.portfolio.bodycheck.BodyCheckDetailFragment.BodyCheckDetailViewModel" />
     </data>
     <androidx.constraintlayout.motion.widget.MotionLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -61,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="03:20"
+            android:transitionName="TEST"
             android:layout_margin="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

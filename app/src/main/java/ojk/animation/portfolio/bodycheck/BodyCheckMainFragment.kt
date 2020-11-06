@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
@@ -33,24 +34,30 @@ class BodyCheckMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        postponeEnterTransition()
         binding = DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
-        return binding.root
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        binding.lifecycleOwner = this
         binding.vm = viewModel
 
+        binding.rootContainer.viewTreeObserver.addOnPreDrawListener(object:ViewTreeObserver.OnPreDrawListener{
+            override fun onPreDraw(): Boolean {
+                binding.rootContainer.viewTreeObserver.removeOnPreDrawListener(this)
+                startPostponedEnterTransition()
+                return true;
+            }
+
+        })
+        return binding.root
     }
 
     private fun initSubscription() {
         viewModel.toastMsg.observe( this, Observer {
         })
         viewModel.toDetail.observe( this, Observer {
-            getShareMap()!!["resourceId"] = it;
-            val list = getTransitionView( it.toString() )?.let {  arrayListOf( it ) }
-            getTransitionView( "bg$it" )?.let{ list?.add(it)}
-            navigate( BodyCheckDetailFragment::class.java , list )
+            val list = arrayListOf( Pair( getTransitionView( it.toString() )!!, it.toString())  )
+            list.add( Pair( getTransitionView( "bg$it" )!!, "bg$it" ))
+            pushNavigationBaseFragment( BodyCheckDetailFragment::class.java , list.toList() , it)
         })
     }
 
