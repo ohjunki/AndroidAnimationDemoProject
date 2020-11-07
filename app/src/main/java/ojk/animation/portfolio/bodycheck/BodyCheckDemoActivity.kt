@@ -26,7 +26,7 @@ class BodyCheckDemoActivity : NavigationBaseActivity(0, R.id.fragment_container)
 
 }
 
-class BodyCheckDemoActivity2 : AppCompatActivity() {
+class BodyCheckDemoActivityTest : AppCompatActivity() { //only use supportTransitionManager
     lateinit var binding: ActivityBodyCheckDemoBinding
 
     val stack = Stack<Fragment>()

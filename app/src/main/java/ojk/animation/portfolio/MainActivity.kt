@@ -30,17 +30,17 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
     private val dataset: Array<DemosAdapter.Demo> = arrayOf(
         DemosAdapter.Demo(
             "YouTube like motion Example",
-            "Example showing a transition like YouTube",
+            "MotionLayout showing a transition like YouTube, https://www.notion.so/jkoh/MotionLayout-ConstraintLayout-d04970dfab844f378aa0e2034c33c865",
             YouTubeDemoActivity::class.java
         ),
+        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout, https://www.notion.so/jkoh/MotionLayout-ConstraintLayout-d04970dfab844f378aa0e2034c33c865", R.layout.motion_13_drawerlayout),
         DemosAdapter.Demo(
             "Folding Animation",
             " with ViewOverlay API",
             FoldAnimationActivity::class.java
         ),
-        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout", R.layout.motion_13_drawerlayout),
-        DemosAdapter.Demo("Enter Animation", "BodyCheck Animation", BodyCheckDemoActivity::class.java ),
-        DemosAdapter.Demo("Fragment Managing", "Fragment Managing Logic and Tab Animation", BottomNavActivity::class.java )
+        DemosAdapter.Demo("Fragment Shared Element Animation", "Shared Element Animation, Utils managing one stack of Fragment ", BodyCheckDemoActivity::class.java ),
+        DemosAdapter.Demo("Fragment Managing", "Related to Tab animation, Fragment state managing, view state managing, Utils managing multiple stack of Fragments", BottomNavActivity::class.java )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -2,24 +2,19 @@ package ojk.animation.portfolio.fragmentmanaging.ui
 
 import android.os.Bundle
 import android.transition.AutoTransition
-import android.transition.Fade
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import ojk.android.utils.DLog
 import ojk.animation.portfolio.R
-import ojk.animation.portfolio.navigationhelper.getTransitionView
 import ojk.animation.portfolio.navigationhelper.pushNavigationBaseFragment
 import ojk.animation.portfolio.utils.navigation.BackPressControllableFragment
 import ojk.animation.portfolio.utils.navigation.NavigationBaseFragment
+import ojk.animation.portfolio.utils.navigation.SharedElementOnReturnProvider
 
 
-class LayoutViewFragment : NavigationBaseFragment<Int>(), BackPressControllableFragment {
+class LayoutViewFragment : NavigationBaseFragment<Int>(), BackPressControllableFragment, SharedElementOnReturnProvider {
   lateinit var root : View
   var t1Name = "Home"
   var t2Name = ""
@@ -59,6 +54,11 @@ class LayoutViewFragment : NavigationBaseFragment<Int>(), BackPressControllableF
     t1Name = "Home"
     t2Name = ""
     setTransitionName()
+    sharedOnReturn.add(Pair(root.findViewById(R.id.test),t1Name))
     return false
   }
+
+  private val sharedOnReturn = mutableListOf<Pair<View,String>>()
+  override val sharedElementsOnReturn: List<Pair<View, String>>?
+    get() = sharedOnReturn
 }

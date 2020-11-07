@@ -34,7 +34,7 @@ class BodyCheckMainFragment : NavigationBaseFragment<Void>() {
     ): View? {
         postponeEnterTransition()
         binding = DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = this //TODO binding이용시 꼭 lifecycleOwner 넣었는지 확인할것! 만약 잘 넣었는데도 shared element가 안된다면 직접 transitionName을 설정해줘야 한다.
         binding.vm = viewModel
 
         binding.rootContainer.viewTreeObserver.addOnPreDrawListener(object:ViewTreeObserver.OnPreDrawListener{
