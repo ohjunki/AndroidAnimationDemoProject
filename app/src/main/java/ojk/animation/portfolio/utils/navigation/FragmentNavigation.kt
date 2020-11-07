@@ -5,5 +5,4 @@ import com.ncapdevi.fragnav.FragNavTransactionOptions
 
 interface FragmentNavigation{
     val mFragNavController : FragNavController
-    var popFragNavTransactionOptions : FragNavTransactionOptions?
 }

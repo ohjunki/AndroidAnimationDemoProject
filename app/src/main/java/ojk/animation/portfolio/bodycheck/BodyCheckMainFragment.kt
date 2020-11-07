@@ -1,6 +1,8 @@
 package ojk.animation.portfolio.bodycheck
 
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +17,9 @@ import androidx.lifecycle.ViewModel
 import ojk.animation.portfolio.R
 import ojk.animation.portfolio.databinding.BodyCheckMainFragmentBinding
 import ojk.animation.portfolio.navigationhelper.*
+import ojk.animation.portfolio.utils.navigation.NavigationBaseFragment
 
-class BodyCheckMainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = BodyCheckMainFragment()
-    }
-
+class BodyCheckMainFragment : NavigationBaseFragment<Void>() {
     private lateinit var binding: BodyCheckMainFragmentBinding
     val viewModel: BodyCheckMainViewModel by viewModels<BodyCheckMainViewModel>()
 
@@ -36,7 +34,6 @@ class BodyCheckMainFragment : Fragment() {
     ): View? {
         postponeEnterTransition()
         binding = DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
-
         binding.lifecycleOwner = this
         binding.vm = viewModel
 
@@ -60,7 +57,6 @@ class BodyCheckMainFragment : Fragment() {
             pushNavigationBaseFragment( BodyCheckDetailFragment::class.java , list.toList() , it)
         })
     }
-
 
     class BodyCheckMainViewModel : ViewModel() {
         private val _toast = MutableLiveData<String>();

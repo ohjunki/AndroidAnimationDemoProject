@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import ojk.android.utils.DLog
+import ojk.animation.portfolio.bodycheck.BodyCheckDemoActivity
 import ojk.animation.portfolio.utils.navigation.NavigationBaseFragment
 import ojk.animation.portfolio.utils.navigation.FragmentNavigation
 import java.io.Serializable
@@ -21,6 +22,21 @@ fun Fragment.getTransitionView(transitionName : String, root : View? = this.view
         else (it as? ViewGroup)
             ?.children?.map{ child-> getTransitionView(transitionName, child) }?.find { childView-> childView != null }
     }
+}
+
+/**
+ * transitionName이 비어있지 않은 모든 set일 가져온다.
+ */
+fun Fragment.getAllSharedElements(root : View? = this.view ) : MutableList<Pair<View, String>> {
+    val list = mutableListOf<Pair<View,String>>()
+    root?.let {
+        DLog.ee(it.transitionName)
+        if( it.transitionName != null && it.transitionName != "" ){
+            list.add(Pair(it , it.transitionName ))
+        }
+        (it as? ViewGroup)?.children?.forEach{ child-> list.addAll(getAllSharedElements(child)) }
+    }
+    return list
 }
 
 
@@ -43,11 +59,9 @@ fun <T: Any> FragmentNavigation.pushNavigationBaseFragment(fragment: Class<*>, s
     data?.let {
         val bundle = Bundle()
         if( it is Serializable ) {
-            DLog.ee("Serializable")
             bundle.putSerializable(NavigationBaseFragment.PARAM_KEY, it)
         }else {
             bundle.putString(NavigationBaseFragment.PARAM_KEY, Gson().toJson(data))
-            DLog.ee("Serializable no ${Gson().toJson(data)}")
         }
         bundle.putSerializable( NavigationBaseFragment.PARAM_CLASSTYPE_KEY, data.javaClass )
         fragment.arguments = bundle
@@ -60,6 +74,5 @@ fun <T: Any> FragmentNavigation.pushNavigationBaseFragment(fragment: Class<*>, s
             options.addSharedElement(pair)
         }
     }
-    popFragNavTransactionOptions = options.build()
-    mFragNavController.pushFragment(fragment, popFragNavTransactionOptions)
+    mFragNavController.pushFragment(fragment, options.build())
 }
