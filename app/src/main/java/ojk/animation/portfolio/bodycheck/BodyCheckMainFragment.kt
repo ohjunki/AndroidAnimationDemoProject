@@ -37,6 +37,7 @@ class BodyCheckMainFragment : Fragment() {
     ): View? {
         Log.e( "MotionLayout", "onCreateView")
         binding = DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         with(binding.recyclerview){
             adapter = MyAdapter(viewModel);
             layoutManager = GridLayoutManager(context, 2);
@@ -57,7 +58,7 @@ class BodyCheckMainFragment : Fragment() {
         viewModel.toDetail.observe( this, Observer {
             getShareMap()!!["resourceId"] = it;
             val list = getTransitionView( it.toString() )?.let {  arrayListOf( it ) }
-            getTransitionView( "bg$it" )?.let{ list?.add(it)}
+//            getTransitionView( "bg$it" )?.let{ list?.add(it)}
             navigate( BodyCheckDetailFragment::class.java , list )
         })
     }
