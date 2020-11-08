@@ -38,29 +38,21 @@ class BodyCheckMainFragment : Fragment() {
         initSubscription()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.e( "MotionLayout", "onDestroyView called" )
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e( "MotionLayout", "onCreateView called" )
-        binding = binding ?: DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
+        postponeEnterTransition()
+        binding = DataBindingUtil.inflate<BodyCheckMainFragmentBinding>(inflater,R.layout.body_check_main_fragment, container, false)
+        binding!!.vm = viewModel
         binding!!.motionLayout.viewTreeObserver.addOnPreDrawListener(object:ViewTreeObserver.OnPreDrawListener{
             override fun onPreDraw(): Boolean {
+                startPostponedEnterTransition()
                 binding!!.motionLayout.viewTreeObserver.removeOnPreDrawListener(this);
                 return true;
             }
         })
         return binding!!.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        binding!!.vm = viewModel
     }
 
     private fun initSubscription() {
