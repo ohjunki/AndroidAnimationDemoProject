@@ -27,6 +27,7 @@ class FoldAnimationActivity : AppCompatActivity() {
                 set.duration = 2000
                 set.setTarget(target)
                 set.addListener(onEnd = {
+                    if( target.isAttachedToWindow.not() ) return@addListener
                     target.rotationX = 0F
                     target.alpha = 1F
                     binding.container.overlay.remove(target)
