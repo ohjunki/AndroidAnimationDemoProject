@@ -53,7 +53,7 @@ fun FragmentNavigation.pushFragment(fragment: Fragment, sharedElementList: List<
     mFragNavController.pushFragment(fragment, options.build())
 }
 
-fun <T: Any> Fragment.pushNavigationBaseFragment(fragment: Class<*>, sharedElementList: List<Pair<View, String>>? = null, data : T? = null) = (requireActivity() as? FragmentNavigation)?.pushNavigationBaseFragment(fragment,sharedElementList, data )
+fun <T: Any> Fragment.pushNavigationBaseFragment(fragment: Class<*>, sharedElementList: List<Pair<View, String>>? = null, data : T? = null) = (requireActivity() as? BodyCheckDemoActivity)?.pushNavigationBaseFragment(fragment,sharedElementList, data )
 fun <T: Any> FragmentNavigation.pushNavigationBaseFragment(fragment: Class<*>, sharedElementList: List<Pair<View, String>>?, data : T? ) {
     val fragment  = fragment.getConstructor().newInstance() as Fragment
     data?.let {

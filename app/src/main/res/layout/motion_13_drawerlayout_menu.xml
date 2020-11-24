@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<ojk.animation.portfolio.utils.DrawerContent
+<ojk.animation.portfolio.utils.motionlayout.DrawerContent
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/menu"
@@ -107,4 +107,4 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-</ojk.animation.portfolio.utils.DrawerContent>
+</ojk.animation.portfolio.utils.motionlayout.DrawerContent>

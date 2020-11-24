@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ojk.animation.portfolio.utils.CollapsibleToolbar
+<ojk.animation.portfolio.utils.motionlayout.CollapsibleToolbar
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/motionLayout"
@@ -38,4 +38,4 @@
         android:textSize="24sp"
         app:fontFamily="cursive" />
 
-</ojk.animation.portfolio.utils.CollapsibleToolbar>
+</ojk.animation.portfolio.utils.motionlayout.CollapsibleToolbar>
