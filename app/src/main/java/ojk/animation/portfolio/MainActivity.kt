@@ -24,16 +24,16 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
     private var doShowPaths = false
 
     /**
-     * https://www.notion.so/jkoh/MotionLayout-ConstraintLayout-d04970dfab844f378aa0e2034c33c865
+     * https://www.notion.so/jkoh/d08e2cc49db34b4b9229d9d34b80fb24?v=9ed40dbf265b4e8799c779a9712e9b44
      * 위의 링크에 필요 내용을 정리했습니다.
      */
     private val dataset: Array<DemosAdapter.Demo> = arrayOf(
         DemosAdapter.Demo(
             "YouTube like motion Example",
-            "MotionLayout showing a transition like YouTube, https://www.notion.so/jkoh/MotionLayout-ConstraintLayout-d04970dfab844f378aa0e2034c33c865",
+            "MotionLayout showing a transition like YouTube, in study https://www.notion.so/jkoh/MotionLayout-ConstraintLayout-d04970dfab844f378aa0e2034c33c865",
             YouTubeDemoActivity::class.java
         ),
-        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout, https://www.notion.so/jkoh/MotionLayout-ConstraintLayout-d04970dfab844f378aa0e2034c33c865", R.layout.motion_13_drawerlayout),
+        DemosAdapter.Demo("DrawerLayout Example With MotionLayout", "Advanced DrawerLayout with MotionLayout, in study https://www.notion.so/jkoh/MotionLayout-ConstraintLayout-d04970dfab844f378aa0e2034c33c865", R.layout.motion_13_drawerlayout),
         DemosAdapter.Demo(
             "Folding Animation",
             " with ViewOverlay API",
