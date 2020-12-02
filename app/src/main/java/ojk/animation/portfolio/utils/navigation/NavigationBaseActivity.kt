@@ -24,13 +24,13 @@ abstract class NavigationBaseActivity(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initFragNavController()
+        initFragNavController( savedInstanceState )
     }
 
-    private fun initFragNavController() {
+    private fun initFragNavController(savedInstanceState: Bundle?) {
         mFragNavController.apply {
             rootFragmentListener = this@NavigationBaseActivity
-            initialize(firstFragmentIndex)
+            initialize(firstFragmentIndex, savedInstanceState)
         }
     }
 
